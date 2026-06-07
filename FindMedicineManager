@@ -1,0 +1,92 @@
+using UnityEngine;
+
+public class FindMedicineManager : MonoBehaviour
+{
+    public AudioSource audioSource;
+    public MedicineAudioManager medicineManager;
+
+    public AudioClip glucozoneFind;
+    public AudioClip fericipFind;
+    public AudioClip venpresFind;
+    public AudioClip lumiaFind;
+    public AudioClip piltopFind;
+
+    public GameObject arrowGlucozone;
+    public GameObject arrowFericip;
+    public GameObject arrowVenpres;
+    public GameObject arrowLumia;
+    public GameObject arrowPiltop;
+
+    public GameObject glowGlucozone;
+    public GameObject glowFericip;
+    public GameObject glowVenpres;
+    public GameObject glowLumia;
+    public GameObject glowPiltop;
+
+    void HideAll()
+    {
+        arrowGlucozone.SetActive(false);
+        arrowFericip.SetActive(false);
+        arrowVenpres.SetActive(false);
+        arrowLumia.SetActive(false);
+        arrowPiltop.SetActive(false);
+
+        glowGlucozone.SetActive(false);
+        glowFericip.SetActive(false);
+        glowVenpres.SetActive(false);
+        glowLumia.SetActive(false);
+        glowPiltop.SetActive(false);
+    } 
+
+    
+    public void FindCurrentMedicine()
+    {
+
+
+        Debug.Log(
+        "Current Medicine = [" +
+        medicineManager.currentMedicine +
+        "]"
+        );
+
+        Debug.Log("Arrow Fericip assigned = " + (arrowFericip != null));
+        Debug.Log("Glow Fericip assigned = " + (glowFericip != null));
+        Debug.Log("Audio Source assigned = " + (audioSource != null));
+        HideAll();
+        Debug.Log("FindCurrentMedicine() = " +medicineManager.currentMedicine);
+
+        switch(medicineManager.currentMedicine.Replace("medicineName = ", ""))
+        {
+            case "glucozone":
+                audioSource.PlayOneShot(glucozoneFind);
+                arrowGlucozone.SetActive(true);
+                glowGlucozone.SetActive(true);
+                break;
+
+            case "fericip":
+                Debug.Log("FERICIP CASE EXECUTED");
+                audioSource.PlayOneShot(fericipFind);
+                arrowFericip.SetActive(true);
+                glowFericip.SetActive(true);
+                break;
+
+            case "venpres":
+                audioSource.PlayOneShot(venpresFind);
+                arrowVenpres.SetActive(true);
+                glowVenpres.SetActive(true);
+                break;
+
+            case "lumia":
+                audioSource.PlayOneShot(lumiaFind);
+                arrowLumia.SetActive(true);
+                glowLumia.SetActive(true);
+                break;
+
+            case "piltop":
+                audioSource.PlayOneShot(piltopFind);
+                arrowPiltop.SetActive(true);
+                glowPiltop.SetActive(true);
+                break;
+        }
+    }
+}
